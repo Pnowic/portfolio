@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var livereload = require('gulp-livereload');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 
@@ -25,9 +26,11 @@ gulp.task('sass', function() {
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('css'))
+        .pipe(livereload({ start: true }));
 });
 
 gulp.task('watch', function() {
+    livereload.listen();
     gulp.watch('scss/**/*.scss', ['sass']);
 });
 
